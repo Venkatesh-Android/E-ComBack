@@ -17,7 +17,12 @@ public class Util {
 		String newString =   u.replace(",PRD", ",", "");
 		System.out.println(newString);
 	}
-	
 
-	
+
+	public static String removeComma(String name) {
+		// TODO Auto-generated method stub
+		return name.replace(",", "");
+	}
+
+
 }

@@ -10,23 +10,20 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.niit.E_ComBack.model.Category;
 
-@Repository("categoryDAO")
+@Repository
 public class CategoryDAOImpl implements CategoryDAO {
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	public CategoryDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-
+	
 	@Transactional
 	public List<Category> list() {
-		// TODO Auto-generated method stub
 
-		@SuppressWarnings({ "unchecked" })
-		List<Category> listCategory = (List<Category>) sessionFactory.getCurrentSession().createCriteria(Category.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		//		List<Category> listCategory = (List<Category>) sessionFactory.getCurrentSession().createCriteria(Category.class)
+//				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
+		List<Category> listCategory = sessionFactory.getCurrentSession().createQuery("from Category").list();
+		
 		return listCategory;
 
 	}
